@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>서울 구 선택</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- 상단 텍스트 -->
+  <header class="header">
+    <h2>서울시 구 선택</h2>
+    <p class="selected-row">
+        선택한 구: <b id="selectedLabel">없음</b>
+    </p>
+  </header>
+
+  <!-- 지도 영역 -->
+  <main id="mapStage">
+    <svg id="seoulMap"></svg>
+  </main>
+
+  <!-- JS -->
+  <script src="app.js"></script>
+</body>
+</html>
