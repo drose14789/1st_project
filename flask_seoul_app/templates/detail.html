@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ gu }} 업태별 상세정보</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/detail.css') }}" />
+
+  <script>
+    const GU = {{ gu|tojson }};
+    const CLOSE_DATA_URL = "{{ url_for('static', filename='data/close_by_gu_biz.json') }}";
+    const BARPLOT_BASE = "{{ url_for('static', filename='gu_barplots') }}/";
+    const PLOT_URL = {{ (plot_url if plot_url else None) | tojson }};
+  </script>
+</head>
+
+<body class="detail-page">
+  <header class="detail-header">
+    <a class="backBtn" href="{{ url_for('index') }}">← 뒤로가기</a>
+
+    <div class="header-text">
+      <h1 id="title">{{ gu }} 업태별 상세정보</h1>
+      <p class="subtitle">한 화면 대시보드: 이미지 · 표 · 막대 · 버블 산점도</p>
+    </div>
+
+    <div class="chip">
+      <span class="chip-k">선택 구</span>
+      <b class="chip-v">{{ gu }}</b>
+    </div>
+  </header>
+
+  <main class="dash-shell">
+    <section class="dash-grid">
+      <!-- 1) 이미지 -->
+      <article class="card" style="grid-area: img;">
+        <div class="card-head">
+          <h3 class="card-title">구별 이미지</h3>
+          <p class="card-desc">업태별 폐업률 요약(정적)</p>
+        </div>
+        <div class="card-body">
+          <div class="media-slot">
+            <img id="guImage"
+              alt="{{ gu }} 그래프"
+              {% if plot_url %}
+                src="{{ plot_url }}"
+                style="display:block;"
+              {% else %}
+                style="display:none;"
+              {% endif %}
+            />
+            <div id="imgFallbackMsg" class="muted" style="display:none;">
+              이미지 파일을 찾지 못했어요. (static/gu_barplots 파일명에 ‘{{ gu }}’ 포함)
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2) 표 -->
+      <article class="card" style="grid-area: table;">
+        <div class="card-head">
+          <h3 class="card-title">업태별 폐업률 · 점포수</h3>
+          <p class="card-desc">소수점 1자리 · 내부 스크롤</p>
+        </div>
+        <div class="card-body">
+          <div id="tableWrap" class="table-slot"></div>
+        </div>
+      </article>
+
+      <!-- 3) 막대 -->
+      <article class="card" style="grid-area: bar;">
+        <div class="card-head">
+          <h3 class="card-title">폐업률 막대그래프</h3>
+          <p class="card-desc">라벨 안 짤리게 자동 배치</p>
+        </div>
+        <div class="card-body">
+          <div class="chart-slot">
+            <svg id="bar"></svg>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4) 산점도 -->
+      <article class="card" style="grid-area: scatter;">
+        <div class="card-head">
+          <h3 class="card-title">버블 산점도</h3>
+          <p class="card-desc">x=점포수(n) · y=폐업률(%) · 크기=예상폐업(n×rate)</p>
+        </div>
+        <div class="card-body">
+          <div class="chart-slot">
+            <svg id="scatter"></svg>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/detail.js') }}"></script>
+</body>
+</html>
