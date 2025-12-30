@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>서울 구 선택</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+  <!-- ✅ Flask에서 static 경로를 JS에 넘겨줌 -->
+  <script>
+    const GEOJSON_URL = "{{ url_for('static', filename='data/seoul_municipalities_geo.json') }}";
+    const DETAIL_URL_BASE = "{{ url_for('detail') }}";  // "/detail"
+  </script>
+</head>
+
+<body>
+  <header class="header">
+    <h2>서울시 구 선택</h2>
+    <p>지도를 클릭해 구를 선택하고 아래 버튼을 누르세요</p>
+  </header>
+
+  <main id="mapStage">
+    <svg id="seoulMap" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet"></svg>
+  </main>
+
+  <div class="toolbar">
+    <div class="badge">선택한 구: <b id="selectedLabel">없음</b></div>
+    <button id="confirmBtn" class="btn" disabled>선택 완료</button>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
