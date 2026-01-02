@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>서울 상권 예측</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+
+  <!-- 로딩 오버레이 -->
+  <div class="overlay" id="loadingOverlay">
+    <div class="panel">
+      <div class="spinner"></div>
+      <div class="overlay-title">학습중입니다... 잠시만 기다려주세요.</div>
+      <div class="muted overlay-sub">예측 계산 중</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- 지도 -->
+    <section class="card" id="mapBox">
+      <h1>1) 서울 지도에서 구를 클릭하세요</h1>
+      <div class="muted">선택된 구: <b id="selectedGu">없음</b></div>
+      <svg id="seoulMap" viewBox="0 0 800 650" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="muted">GeoJSON은 <code>/api/seoul-geojson</code> 에서 불러옵니다.</div>
+    </section>
+
+    <!-- 입력/결과 -->
+    <section class="card">
+      <h1>2) 조건 선택 → 선택완료(예측)</h1>
+
+      <label>구</label>
+      <input id="guInput" readonly placeholder="지도에서 구를 클릭하세요" />
+
+      <label for="bizSelect">업태</label>
+      <select id="bizSelect">
+        <option value="">업태 선택</option>
+        {% for b in biz_options %}
+          <option value="{{ b }}">{{ b }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="monthSelect">창업 월</label>
+      <select id="monthSelect">
+        {% for m in range(1,13) %}
+          <option value="{{m}}">{{m}}월</option>
+        {% endfor %}
+      </select>
+
+      <label for="pyeongSelect">평수</label>
+      <select id="pyeongSelect">
+        <option value="10">10평</option>
+        <option value="30">30평</option>
+        <option value="50">50평</option>
+        <option value="70">70평</option>
+        <option value="100">100평</option>
+      </select>
+
+      <!-- ✅ submit 방지: 버튼은 반드시 type="button" -->
+      <button id="runBtn" type="button">선택완료 (예측 실행)</button>
+
+      <div id="errBox"></div>
+
+      <div id="resultBox">
+        <div class="result-title">3) 결과</div>
+        <div id="pillRow" class="row" style="margin-top:6px;"></div>
+        <div class="pred" id="predText"></div>
+      </div>
+
+      <div class="muted footnote">
+      </div>
+    </section>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
