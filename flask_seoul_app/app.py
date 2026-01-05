@@ -24,6 +24,10 @@ if isinstance(obj, dict):
     pop_by_gu = obj.get("pop_by_gu", {})
     pop_global_latest = obj.get("pop_global_latest", None)
     pyeong_to_size = obj.get("pyeong_to_size", {})
+
+    # ✅ model-info 표기를 위해 있으면 가져오고, 없으면 None
+    latest_date = obj.get("latest_date", None)
+    latest_ym = obj.get("latest_ym", None)
 else:
     model = obj
     threshold = 0.5
@@ -31,6 +35,8 @@ else:
     pop_by_gu = {}
     pop_global_latest = None
     pyeong_to_size = {}
+    latest_date = None
+    latest_ym = None
 
 if model is None or not hasattr(model, "predict"):
     raise TypeError("pkl에서 predict 가능한 모델을 찾지 못했습니다. dict['model'] 확인 필요")
@@ -106,7 +112,6 @@ def validate_X(row: dict):
     if any(v > 0 for v in nan_map.values()):
         return None, {"error": "입력값에 NaN이 있어 예측 불가", "nan_by_col": nan_map, "row": row}
 
-    # inf 검사
     inf_cols = []
     for c in NUM_COLS:
         vals = X[c].values.astype(float)
@@ -119,7 +124,6 @@ def validate_X(row: dict):
 
 
 def risk_grade(risk_pct: float) -> str:
-    # ✅ 등급 기준(원하는대로 조절)
     if risk_pct < 20:
         return "매우 낮음"
     if risk_pct < 40:
@@ -139,12 +143,40 @@ def main():
 
 @app.route("/api/seoul-geojson", methods=["GET"])
 def api_geojson():
+    """
+    ✅ 핵심 수정:
+    - app.js는 "FeatureCollection(원본)"을 바로 기대함.
+    - 따라서 {ok:true, geo:...}로 감싸지 말고 geojson 원본을 그대로 반환해야 함.
+    """
     if not os.path.exists(GEOJSON_PATH):
         return jsonify({"ok": False, "error": f"GeoJSON 파일이 없습니다: {GEOJSON_PATH}"}), 500
+
     try:
         with open(GEOJSON_PATH, "r", encoding="utf-8") as f:
             geo = json.load(f)
-        return jsonify({"ok": True, "geo": geo})
+
+        # ✅ 원본 그대로 반환
+        return jsonify(geo)
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/model-info", methods=["GET"])
+def model_info():
+    """
+    ✅ 모델 기준/출처(근거) 표기용
+    - pkl에 저장된 defaults_latest / threshold / latest_date / latest_ym 등을 그대로 노출
+    """
+    try:
+        # defaults_latest가 비어있어도 UI는 '-'로 처리함
+        return jsonify({
+            "ok": True,
+            "threshold": threshold,
+            "latest_date": latest_date,
+            "latest_ym": latest_ym,
+            "defaults_latest": defaults_latest,
+            "source_note": "표기값은 모델 번들(pkl)에 저장된 기준값이며, 입력 누락 시 대체값으로 사용됩니다."
+        })
     except Exception as e:
         return jsonify({"ok": False, "error": str(e)}), 500
 
@@ -184,7 +216,6 @@ def predict():
         if err:
             return jsonify({"ok": False, **err}), 400
 
-        # ✅ 확률 예측 (0~1)
         if not hasattr(model, "predict_proba"):
             return jsonify({"ok": False, "error": "모델이 predict_proba를 지원하지 않습니다."}), 500
 
@@ -192,20 +223,25 @@ def predict():
         if np.isnan(proba) or np.isinf(proba):
             return jsonify({"ok": False, "error": "predict_proba가 NaN/Inf 반환", "row": row}), 500
 
-        # ✅ 상세 값(%) + 등급
         risk_pct = round(proba * 100, 1)
         grade = risk_grade(risk_pct)
-
-        # (참고용) threshold를 기준으로 위험/비위험 라벨도 같이 줄 수 있음
         binary_label = "위험" if proba >= threshold else "비교적 안전"
 
+        # ✅ app.js가 보기 좋게 출력하도록 키를 추가(기존 기능 안 깨짐)
         return jsonify({
             "ok": True,
-            "risk_pct": risk_pct,           # ✅ 상세 점수(0~100)
-            "grade": grade,                 # ✅ 등급
-            "label": binary_label,          # (선택) threshold 기준 라벨
+
+            "gu": gu,
+            "biz": biz,
+            "month": month,
+            "pyeong": pyeong,
+
+            "pred_prob": proba,           # app.js가 pred_prob 우선으로 읽음
+            "risk_pct": risk_pct,
+            "grade": grade,
+            "label": binary_label,
             "result": f"폐업 위험도 {risk_pct}% ({grade})",
-            "inputs": {"gu": gu, "biz": biz, "month": month, "pyeong": pyeong},
+
             "features_used": row
         })
 
@@ -214,6 +250,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    print("✅ MODEL:", MODEL_PATH)
-    print("✅ GEOJSON:", GEOJSON_PATH)
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)

@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <title>서울 상권 예측</title>
+  <title>서울시 일반음식점 폐업 위험 분석</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -14,7 +14,7 @@
   <div class="overlay" id="loadingOverlay">
     <div class="panel">
       <div class="spinner"></div>
-      <div class="overlay-title">학습중입니다... 잠시만 기다려주세요.</div>
+      <div class="overlay-title">학습중입니다. 잠시만 기다려주세요.</div>
       <div class="muted overlay-sub">예측 계산 중</div>
     </div>
   </div>
@@ -22,7 +22,7 @@
   <div class="wrap">
     <!-- 지도 -->
     <section class="card" id="mapBox">
-      <h1>1) 서울 지도에서 구를 클릭하세요</h1>
+      <h1>서울시 일반음식점 폐업 위험 분석</h1>
       <div class="muted">선택된 구: <b id="selectedGu">없음</b></div>
       <svg id="seoulMap" viewBox="0 0 800 650" preserveAspectRatio="xMidYMid meet"></svg>
       <div class="muted">GeoJSON은 <code>/api/seoul-geojson</code> 에서 불러옵니다.</div>
@@ -30,7 +30,7 @@
 
     <!-- 입력/결과 -->
     <section class="card">
-      <h1>2) 조건 선택 → 선택완료(예측)</h1>
+      <h1>공공데이터 기반 · 3년 이내 폐업률 예측</h1>
 
       <label>구</label>
       <input id="guInput" readonly placeholder="지도에서 구를 클릭하세요" />
@@ -59,7 +59,6 @@
         <option value="100">100평</option>
       </select>
 
-      <!-- ✅ submit 방지: 버튼은 반드시 type="button" -->
       <button id="runBtn" type="button">선택완료 (예측 실행)</button>
 
       <div id="errBox"></div>
@@ -71,6 +70,25 @@
       </div>
 
       <div class="muted footnote">
+        <details id="modelInfoWrap">
+          <summary style="cursor:pointer;">경제지표기준</summary>
+
+          <div id="modelInfoBox" style="
+            margin-top:10px;
+            padding:10px 12px;
+            border:1px solid rgba(0,0,0,.12);
+            border-radius:12px;
+            background: rgba(0,0,0,.03);
+            line-height:1.55;
+            font-size:12.5px;
+          ">
+            <div class="muted">모델 정보를 불러오는 중...</div>
+          </div>
+
+          <div class="muted" style="margin-top:8px; font-size:12px; opacity:.85;">
+            <!-- ※ 아래 표기값은 <b>모델 번들(pkl)에 저장된 기준값</b>이며, 예측 입력에 해당 변수가 없으면 <b>대체값</b>으로 사용됩니다. -->
+          </div>
+        </details>
       </div>
     </section>
   </div>
