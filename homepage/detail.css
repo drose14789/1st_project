@@ -1,0 +1,66 @@
+/* =========================
+   전체 페이지 센터 정렬
+   ========================= */
+body.page.detail-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /* ✅ 수평 가운데 */
+  justify-content: flex-start;  /* ✅ 위에서부터 정렬 */
+  min-height: 100vh;
+  overflow-y: auto;
+  background: #eef5ff;
+  margin: 0;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #d8e6ff;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  padding: 20px;
+  width: min(900px, 90vw);
+  margin: 0 auto;
+  text-align: center;
+}
+
+#tableWrap {
+  text-align: center;
+  margin: 0 auto 16px;
+}
+
+#bar {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+#guImage{
+  display:block;
+  margin: 14px auto 18px;
+  width: min(900px, 90vw); /* ✅ 카드 폭 기준 */
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* ✅ 뒤로가기 버튼 */
+body.detail-page .backBtn{
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 800;
+  color: #2b61ff;
+  background: #ffffff;
+  border: 1px solid #d8e6ff;
+  padding: 10px 14px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+body.detail-page .backBtn:hover{
+  filter: brightness(0.98);
+}

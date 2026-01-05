@@ -2,31 +2,47 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <title>서울 구 선택</title>
+  <title>서울시 일반음식점 폐업 위험 분석</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- D3 -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- 상단 텍스트 -->
+  <!-- ✅ 상단 헤더 -->
   <header class="header">
-    <h2>서울시 구 선택</h2>
-    <p class="selected-row">
-        선택한 구: <b id="selectedLabel">없음</b>
+    <h1>서울시 일반음식점 폐업 위험 분석</h1>
+    <p class="subtitle">
+      공공데이터 기반 · 3년 이내 폐업률 예측 (2000–2022)
     </p>
   </header>
 
-  <!-- 지도 영역 -->
+  <!-- ✅ 지도 -->
   <main id="mapStage">
-    <svg id="seoulMap"></svg>
+    <svg id="seoulMap" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet"></svg>
   </main>
 
-  <!-- JS -->
+  <!-- 강제 오버레이 작동 -->
+  <div id="loadingOverlay" class="loading-overlay" style="display:none;">
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <div class="loading-text">머신러닝 학습중입니다. 조금만 기다려주세요…</div>
+    </div>
+  </div>
+
+  <!-- ✅ 하단 카드형 CTA -->
+  <div class="toolbar">
+    <div class="select-card">
+      <div class="label">📍 선택한 구 : </div>
+      <div id="selectedLabel" class="value">선택</div>
+    </div>
+
+    <button id="confirmBtn" class="btn" disabled>
+      업태별 폐업률 분석 보기 →
+    </button>
+  </div>
+
   <script src="app.js"></script>
 </body>
 </html>

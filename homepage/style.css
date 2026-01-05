@@ -1,95 +1,148 @@
-/* =========================
-   전체 리셋
-   ========================= */
-* {
-  box-sizing: border-box;
+body {
+  background: #e9ebee;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;        /* 스크롤 완전 차단 */
-  font-family: system-ui, -apple-system, "Segoe UI",
-               Roboto, "Noto Sans KR", sans-serif;
-  background: #eef5ff;
-  color: #222;
+/* 지도 뒤에 살짝 다른 톤 */
+#mapStage {
+  background: #f8f9fb;
+  border: 1px solid #dde1e7;
+  border-radius: 24px;
 }
 
-/* =========================
-   상단 헤더
-   ========================= */
+
+
+/* ===== 헤더 ===== */
 .header {
+  margin-top: -20px;      /* ⭐ 위로 당김 */
   text-align: center;
-  padding: 18px 24px 10px;
+  padding: 28px 20px 0;   /* 🔽 하단 패딩 줄임 */
+  position: relative;
+  z-index: 20;            /* ⭐ 지도 위로 */
 }
 
-.header h2 {
-  margin: 0 0 8px;
-  font-size: 40px;        /* 🔥 고정 크기 */
+.header h1 {
+  margin: 0 0 10px;
+  font-size: 42px;
   font-weight: 800;
   letter-spacing: -1px;
 }
 
-.selected-row {
-  text-align: left;
-  max-width: 950px;
-  margin: 8px auto 0;
+.subtitle {
+  font-size: 18px;
+  color: #4a5d85;
+
+  margin-top: -16px;       /* ⭐ 위로 당김 */
+  padding: 6px 14px;
+
 }
 
 
-.header p {
-  margin: 0;
-  font-size: 20px;        /* 🔥 고정 크기 */
-  color: #444;
-}
-
-/* =========================
-   지도 스테이지
-   ========================= */
+/* ===== 지도 영역 ===== */
 #mapStage {
   position: fixed;
-  top: 20px;             /* ⭐ 지도 위치 고정 */
+  top: 130px;
   left: 0;
   right: 0;
-  bottom: 0;
-
+  bottom: 110px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
-/* =========================
-   SVG 지도
-   ========================= */
 #seoulMap {
-  width: 1900px;           /* 🔥 PC 기준 고정 크기 */
-  height: auto;
-  display: block;
+  height: 100%;
+  max-width: 96vw;
 }
 
-/* =========================
-   구 스타일
-   ========================= */
+/* ===== 하단 카드 ===== */
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: rgba(238,245,255,.95);
+  border-top: 1px solid #d8e6ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 선택 카드 */
+.select-card {
+  background: #fff;
+  border: 1px solid #d8e6ff;
+  border-radius: 16px;
+  padding: 14px 20px;
+  min-width: 180px;
+  text-align: center;
+}
+
+.select-card {
+  padding: 8px 14px;          /* ⬇ 위아래 줄임 */
+  min-width: 140px;           /* ⬇ 살짝 줄임 */
+  border-radius: 14px;
+
+  display: flex;              /* ⭐ 가로 정렬 */
+  align-items: center;
+  gap: 8px;                   /* 아이콘-텍스트 간격 */
+}
+
+
+.select-card .label {
+  font-size: 14px;
+  color: #6b7ba6;
+}
+
+.select-card .value {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;        /* ⭐ 중요 */
+  position: relative;
+  top: -2px;             /* ⭐ 핵심: 위로 올림 */
+}
+
+/* 버튼 */
+.btn {
+  border: none;
+  padding: 16px 22px;
+  border-radius: 18px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  background: linear-gradient(180deg, #3f7bff, #2b61ff);
+  color: white;
+  box-shadow: 0 10px 20px rgba(43,97,255,.25);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgba(43,97,255,.35);
+}
+
+.btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ===== 지도 구 스타일 ===== */
 .gu {
-  fill: #cfe3ff;
+  fill: #d6e6ff;
   stroke: #ffffff;
   stroke-width: 2;
   cursor: pointer;
-  transition:
-    transform .15s ease,
-    stroke .15s ease,
-    filter .15s ease,
-    fill .15s ease;
+  transition: all .15s ease;
 }
 
 .gu:hover {
-  transform: translateY(-4px);
-  stroke: #ff8a00;
-  stroke-width: 3;
-  filter: drop-shadow(0 6px 10px rgba(0,0,0,.2));
   fill: #b9d6ff;
+  stroke: #ff9f43;
+  stroke-width: 3;
+  transform: translateY(-4px);
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.2));
 }
 
 .gu.selected {
@@ -98,16 +151,63 @@ html, body {
   stroke-width: 3.5;
 }
 
+/* ===== 구 이름 텍스트 ===== */
 .gu-label {
-  font-size: 10px;
+  font-size: 15px;
   font-weight: 700;
   fill: #1f2a44;
-  pointer-events: none; /* ⭐ 클릭 방해 안 하게 */
+  pointer-events: all;      /* ⭐ 클릭 가능 */
+  cursor: pointer;
   user-select: none;
+  transition: fill .15s ease, transform .15s ease;
 }
 
+/* hover 효과 */
+.gu-label:hover {
+  fill: #ff8a00;
+  transform: translateY(-2px);
+}
+
+/* 선택된 구 텍스트 */
 .gu-label.selected {
   fill: #ff8a00;
-  font-size: 13px;
+  font-weight: 800;
+}
+.loading-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
+.loading-box{
+  background: #fff;
+  padding: 22px 26px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.spinner{
+  width: 22px;
+  height: 22px;
+  border: 3px solid #d7d7d7;
+  border-top-color: #2b6cff;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+.loading-text{
+  font-size: 14px;
+  font-weight: 700;
+  color: #222;
+}
+
+@keyframes spin{
+  to { transform: rotate(360deg); }
+}
