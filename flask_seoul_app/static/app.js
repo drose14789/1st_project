@@ -1,14 +1,29 @@
 let selectedGu = null;
 
+
+const LABEL_OFFSET = {
+  "강남구": [-10, 10],
+  "서초구": [-10, 0],
+  "중구": [0, 0],    // 좌우 조정
+  "양천구": [0, 10], // 위아래 조정
+  "구로구": [-10, 0],
+  "종로구": [-7, 15],
+  "서대문구": [-8, 0],
+  "성북구": [0, 10],
+  "강북구": [0, 10],
+
+};
+
+
+
 const svg = d3.select("#seoulMap");
 
-// ✅ 너 HTML에 맞는 id로 변경
-const selectedGuEl = document.getElementById("selectedGu"); // <b id="selectedGu">
-const guInputEl = document.getElementById("guInput");       // <input id="guInput">
+const selectedGuEl = document.getElementById("selectedGu");
+const guInputEl = document.getElementById("guInput");
 const bizEl = document.getElementById("bizSelect");
 const monthEl = document.getElementById("monthSelect");
 const pyeongEl = document.getElementById("pyeongSelect");
-const btnEl = document.getElementById("runBtn");            // <button id="runBtn">
+const btnEl = document.getElementById("runBtn");
 const resultBox = document.getElementById("resultBox");
 const errBox = document.getElementById("errBox");
 const overlay = document.getElementById("loadingOverlay");
@@ -20,12 +35,10 @@ function setSelectedGuText(gu) {
   if (guInputEl) guInputEl.value = gu || "";
 }
 
-function setError(msg) {
-  if (errBox) errBox.innerHTML = msg ? `<div style="color:#dc2626;font-weight:800;">${msg}</div>` : "";
-}
-
-function setResult(html) {
-  if (resultBox) resultBox.innerHTML = html;
+function showError(msg) {
+  if (!errBox) return;
+  errBox.textContent = msg || "";
+  errBox.style.display = msg ? "block" : "none";
 }
 
 function showOverlay(on) {
@@ -33,146 +46,196 @@ function showOverlay(on) {
   overlay.style.display = on ? "flex" : "none";
 }
 
-// GeoJSON 구 이름 최대한 잡기
-function getGuName(feature) {
-  const p = (feature && feature.properties) ? feature.properties : {};
-  const v = p.SIG_KOR_NM || p.name || p.adm_nm || p.gu || p.GU_NM || p.ADM_NM || p.sggnm;
-  if (v) return String(v).trim();
+function renderResult(data) {
+  if (!resultBox) return;
 
-  // 마지막 fallback: 문자열 값 아무거나
-  for (const k of Object.keys(p)) {
-    const val = p[k];
-    if (typeof val === "string" && val.trim().length >= 2) return val.trim();
+  const pillRow = document.getElementById("pillRow");
+  const predText = document.getElementById("predText");
+
+  if (pillRow) pillRow.innerHTML = "";
+  if (predText) predText.textContent = "";
+
+  if (!data || !data.ok) {
+    showError(data?.error || "예측 실패");
+    return;
   }
-  return "알수없음";
+
+  showError("");
+
+  const pills = [];
+  if (data.gu) pills.push(`구: ${data.gu}`);
+  if (data.biz) pills.push(`업태: ${data.biz}`);
+  if (data.month) pills.push(`월: ${data.month}`);
+  if (data.pyeong) pills.push(`평수: ${data.pyeong}`);
+
+  if (pillRow) {
+    pills.forEach((t) => {
+      const div = document.createElement("div");
+      div.className = "pill";
+      div.textContent = t;
+      pillRow.appendChild(div);
+    });
+  }
+
+  if (predText) {
+    const prob = (data.pred_prob ?? data.prob ?? null);
+    const label = (data.label ?? data.result ?? "");
+    const grade = (data.grade ?? "");
+
+    let line = "";
+    if (prob !== null && prob !== undefined) line += `예측확률: ${(Number(prob) * 100).toFixed(1)}%  `;
+    if (label) line += `판정: ${label}  `;
+    if (grade) line += `등급: ${grade}`;
+
+    predText.textContent = line || JSON.stringify(data);
+  }
+
+  resultBox.style.display = "block";
+}
+
+function getGuName(d) {
+  const p = d.properties || {};
+  return p.name || p.SIG_KOR_NM || p.adm_nm || p.gu || p.GU || p.SGG_NM || "";
+}
+
+function onGuClick(event, d) {
+  const gu = getGuName(d);
+  if (!gu) return;
+
+  selectedGu = gu;
+  setSelectedGuText(gu);
+
+  svg.selectAll("path.gu")
+    .classed("selected", (x) => getGuName(x) === gu);
 }
 
 async function loadGeoAndRender() {
   try {
-    setError("");
-    showOverlay(false); // ✅ 시작할 때 overlay 무조건 꺼두기
+    const res = await fetch("/api/seoul-geojson", { cache: "no-store" });
+    const raw = await res.json();
 
-    const res = await fetch("/api/seoul-geojson");
-    const j = await res.json();
-    if (!res.ok || !j.ok) throw new Error(j.error || "GeoJSON 응답 오류");
+    // ✅ 서버가 원본을 주면 raw가 FeatureCollection
+    // ✅ 서버가 감싸서 주면 {ok:true, geo: FeatureCollection}
+    const geo = (raw && raw.type === "FeatureCollection") ? raw : (raw.geo || null);
 
-    const geo = j.geo;
+    if (!geo || !geo.features) {
+      console.error("GeoJSON 응답 형식 오류:", raw);
+      return showError("GeoJSON 로드 실패(응답 형식 오류)");
+    }
 
     const projection = d3.geoMercator().fitSize([W, H], geo);
     const path = d3.geoPath().projection(projection);
 
-    svg.attr("viewBox", `0 0 ${W} ${H}`)
-      .attr("preserveAspectRatio", "xMidYMid meet");
-
     svg.selectAll("*").remove();
 
-    const g = svg.append("g").attr("class", "gu-layer");
-
-    // ✅ path 그리기 + 클릭
-    g.selectAll("path.gu")
+    svg.selectAll("path.gu")
       .data(geo.features)
       .enter()
       .append("path")
       .attr("class", "gu")
       .attr("d", path)
-      .style("pointer-events", "all")
-      .on("click", function (event, d) {
-        event.preventDefault();
-        event.stopPropagation();
+      .on("click", onGuClick);
 
-        selectedGu = getGuName(d);
-
-        g.selectAll("path.gu").classed("selected", false);
-        d3.select(this).classed("selected", true);
-
-        setSelectedGuText(selectedGu);
-        setError("");
-      });
-
-    // ✅ 구 이름 라벨 표시 (텍스트가 클릭 가로채지 않게 pointer-events none은 CSS에서 처리)
-    g.selectAll("text.gu-label")
+    svg.selectAll("text.gu-label")
       .data(geo.features)
       .enter()
       .append("text")
       .attr("class", "gu-label")
       .attr("transform", (d) => {
-        const c = path.centroid(d);
-        return `translate(${c[0]},${c[1]})`;
+        const name = getGuName(d);
+        const [x, y] = path.centroid(d);
+        const [dx, dy] = (LABEL_OFFSET && LABEL_OFFSET[name]) ? LABEL_OFFSET[name] : [0, 0];
+        return `translate(${x + dx},${y + dy})`;
       })
       .attr("text-anchor", "middle")
-      .text((d) => getGuName(d).replace("서울특별시 ", ""));
-
-    // 디버그: path 개수 확인
-    console.log("✅ paths:", document.querySelectorAll("#seoulMap path.gu").length);
-
-    setSelectedGuText(null);
+      .attr("dy", "0.35em")
+      .text((d) => getGuName(d));
 
   } catch (e) {
     console.error(e);
-    setError(`지도 로드 오류: ${e.message}`);
+    showError("GeoJSON 로드 실패");
   }
 }
 
 async function requestPredict() {
   try {
-    setError("");
+    showError("");
 
-    if (!selectedGu) {
-      setError("구를 먼저 선택하세요.");
-      return;
-    }
-
+    const gu = selectedGu || (guInputEl ? guInputEl.value.trim() : "");
     const biz = bizEl ? bizEl.value : "";
     const month = monthEl ? parseInt(monthEl.value || "1", 10) : 1;
     const pyeong = pyeongEl ? parseInt(pyeongEl.value || "10", 10) : 10;
 
-    if (!biz) {
-      setError("업태를 선택하세요.");
-      return;
-    }
+    if (!gu) return showError("구를 선택하세요.");
+    if (!biz) return showError("업태를 선택하세요.");
 
     showOverlay(true);
-    btnEl && (btnEl.disabled = true);
 
-    const payload = { gu: selectedGu, biz, month, pyeong };
+    const payload = { gu, biz, month, pyeong };
 
     const res = await fetch("/predict", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(payload)
     });
 
-    const j = await res.json();
-    if (!res.ok || !j.ok) throw new Error(j.error || `서버 오류(${res.status})`);
-
-    // 서버가 risk_pct/grade/label/result 내려주는 버전 기준
-    const risk = j.risk_pct ?? j.probability ?? null;
-    const grade = j.grade ?? "";
-    const label = j.label ?? "";
-
-    setResult(`
-      <div class="result-title">3) 결과</div>
-      <div style="margin-top:8px; font-size:20px; font-weight:900;">
-        ${j.result ?? `폐업 위험도 ${risk}%`}
-      </div>
-      <div style="margin-top:6px; opacity:.85;">
-        등급: <b>${grade}</b> ${label ? `/ 라벨: <b>${label}</b>` : ""}
-      </div>
-      <div style="margin-top:10px; font-size:12px; opacity:.75;">
-        입력: ${j.inputs.gu} / ${j.inputs.biz} / ${j.inputs.month}월 / ${j.inputs.pyeong}평
-      </div>
-    `);
+    const data = await res.json();
+    renderResult(data);
 
   } catch (e) {
     console.error(e);
-    setError(`서버 통신 오류: ${e.message}`);
+    showError("예측 요청 실패");
   } finally {
     showOverlay(false);
-    btnEl && (btnEl.disabled = false);
   }
 }
 
-// ✅ 버튼 id가 runBtn이니까 여기에 연결
 if (btnEl) btnEl.addEventListener("click", requestPredict);
 
 loadGeoAndRender();
+
+
+// ============================================================
+// ✅ 모델 기준/출처(근거) 표시: /model-info 응답을 화면에 출력
+//    - 404/HTML 응답도 안전하게 처리
+// ============================================================
+async function loadModelInfo() {
+  const box = document.getElementById("modelInfoBox");
+  if (!box) return;
+
+  try {
+    const res = await fetch("/model-info", { cache: "no-store" });
+
+    const text = await res.text();
+    let j = null;
+    try { j = JSON.parse(text); } catch {}
+
+    if (!res.ok) {
+      const msg = (j && j.error) ? j.error : `/model-info HTTP ${res.status}`;
+      throw new Error(msg);
+    }
+    if (!j || !j.ok) {
+      throw new Error(j?.error || "모델 정보 응답 형식 오류");
+    }
+
+    const d = j.defaults_latest || {};
+    const baseRate = (d.base_rate ?? "-");
+    const partRate = (d["인허가일자_경제활동참가율"] ?? "-");
+    const unemp = (d["인허가일자_실업률"] ?? "-");
+    const emp = (d["인허가일자_고용률"] ?? "-");
+
+    box.innerHTML = `
+
+
+      <div style="margin-bottom:6px;"><b>경제지표 기본값</b></div>
+      <div>· base_rate: <b>${baseRate}</b></div>
+      <div>· 경제활동참가율: <b>${partRate}</b></div>
+      <div>· 실업률: <b>${unemp}</b></div>
+      <div>· 고용률: <b>${emp}</b></div>
+    `;
+  } catch (e) {
+    box.innerHTML = `<div style="color:#dc2626;font-weight:900;">모델 정보 로드 실패: ${e.message}</div>`;
+  }
+}
+
+loadModelInfo();
