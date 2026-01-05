@@ -1,9 +1,0 @@
-[
-  {"gu":"성북구","biz":"한식","pred_rate":0.23,"true_rate":0.21},
-  {"gu":"성북구","biz":"중식","pred_rate":0.18,"true_rate":0.16},
-  {"gu":"성북구","biz":"일식","pred_rate":0.15,"true_rate":0.14},
-  {"gu":"성북구","biz":"양식","pred_rate":0.20,"true_rate":0.19},
-  {"gu":"성북구","biz":"분식","pred_rate":0.17,"true_rate":0.18},
-  {"gu":"성북구","biz":"카페","pred_rate":0.26,"true_rate":0.24},
-  {"gu":"성북구","biz":"기타","pred_rate":0.12,"true_rate":0.10}
-]
