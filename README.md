@@ -1,11 +1,10 @@
 # 🎯 1st PROJECTS
-[![PPTX](https://img.shields.io/badge/Presentation-PPTX-blue)](https://github.com/user-attachments/files/24443148/1st_project.3.pptx)
 
 > KDT AI-X 1차 프로젝트
 
 ## 📌 프로젝트 개요
 
-- **프로젝트명**: [프로젝트 이름]
+- **프로젝트명**: 서울시 일반음식점 3년 이내 폐업률 예측 모델
 - **개발 기간**: 2024.12.24 ~ 2025.01.05 (2주)
 - **개발 인원**: 4명
 - **주요 기술**:  
@@ -30,11 +29,24 @@
 	  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 	</div>
 
+[![PPTX](https://img.shields.io/badge/Presentation-PPTX-blue)](https://github.com/user-attachments/files/24443148/1st_project.3.pptx)
+
+
 ## 📑 목차
+[01. 프로젝트 개요](https://github.com/user-attachments/assets/6ba6f61c-88f8-4c32-b0ec-b72fb63dd522)<br>
+[02. 프로젝트 목표](url)<br>
+[03. 전체 시스템 구성](url)<br>
+[04. 업무 분장 및 일정 관리](url)<br>
+[05. 개발 환경](url)<br>
+[06. 데이터 개요 및 전처리](url)<br>
+[07. 데이터 분석 및 특징 추출](url)<br>
+[08. 딥러닝 모델 구현](url)<br>
+[09. 머신러닝 모델 구현](url)<br>
+[10. 웹 서비스 구현 및 UI 시연](url)<br>
+[11. 최종 결과 및 결론](url)<br>
 
+## Project Overview
 
-
-## 📑 PPT
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/f631e551-dfc6-413d-a826-ac03c653262b" />
 
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/a6daf664-953a-4c71-842c-30b5c1b23513" />
@@ -51,6 +63,8 @@
 
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/69405923-c12b-4cfd-ab6f-cd00c623c6cf" />
 
+## Data Processing
+
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/329648c3-57d5-47f8-8ef1-0d7170ea91b1" />
 
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ace897de-b453-40fd-912f-b97b934e840e" />
@@ -62,6 +76,8 @@
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/810fb072-9ef0-4ce6-86c0-da8b6a490606" />
 
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/e7173518-8a10-462b-b427-c27066bca791" />
+
+## Model implementation
 
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/c4b57c45-7b4e-4cc0-888c-fce271809bb3" />
 
@@ -83,9 +99,13 @@
 
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/e4ca902e-2050-42b5-b269-e52285ccf84b" />
 
+## Web Page Implementation
+
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/106609e3-dfb0-4d4f-a047-da96e47d6136" />
 
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/237c244a-8b8d-4408-b96d-78c056ee50da" />
+
+## Project Result
 
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/57d0133b-9047-4331-9d3a-c6266d793598" />
 
@@ -95,7 +115,7 @@
 
 <div>
 
-[![Video Title](https://img.youtube.com/vi/Plf0P_m5qbg/3.jpg)](https://youtu.be/Plf0P_m5qbg?si=Fx3lEvU6rlhwUxEc)
+[![Video Title](https://img.youtube.com/vi/Plf0P_m5qbg/0.jpg)](https://youtu.be/Plf0P_m5qbg?si=Fx3lEvU6rlhwUxEc)
 *클릭하면 데모 영상을 볼 수 있습니다*
 
 [![Demo](https://img.shields.io/badge/Demo-success?style=flat-square)](https://youtu.be/Plf0P_m5qbg?si=j7dAn5hjBBsjYa9J)
