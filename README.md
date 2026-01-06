@@ -5,3 +5,59 @@
 - 기간 : 2025.12.19 ~ 2026.01.05
 
 [![PPTX](https://img.shields.io/badge/Presentation-PPTX-blue)](https://github.com/user-attachments/files/24443148/1st_project.3.pptx)
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/f631e551-dfc6-413d-a826-ac03c653262b" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/a6daf664-953a-4c71-842c-30b5c1b23513" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/6ba6f61c-88f8-4c32-b0ec-b72fb63dd522" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/532c010b-59c8-4168-a19c-e4fa1b1bded9" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/6f6a2594-bb87-4a3f-adf1-531f30e415bb" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/8140fc9f-93a3-4b10-aa48-22bb3327f8ae" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/dfba7efc-8b43-4630-8804-a85254d7f9c2" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/69405923-c12b-4cfd-ab6f-cd00c623c6cf" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/329648c3-57d5-47f8-8ef1-0d7170ea91b1" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ace897de-b453-40fd-912f-b97b934e840e" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/b15fa543-c4d5-473e-be0b-7cae3c37e5d2" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ce0a7da5-b41a-49bd-b3ff-f7ddc540a0a6" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/810fb072-9ef0-4ce6-86c0-da8b6a490606" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/e7173518-8a10-462b-b427-c27066bca791" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/c4b57c45-7b4e-4cc0-888c-fce271809bb3" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/6f92a26f-33dd-4758-9e76-3a6c80460428" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/b6373284-c615-4cc6-898c-f3889a4a9d50" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/9e19fcdb-0f44-44e7-acdb-f3d1ad0c2c9a" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/3e84b302-169a-455b-b6fe-7d3877e6f13e" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/f38f0ffe-f228-4f9f-98e0-10af1718056e" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/3ed56902-db49-40cc-8114-f7d771f2394f" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/2a67e147-87de-435c-914e-3ead3e9385ee" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/2f03531e-6729-4701-ba7a-01764822248e" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/e4ca902e-2050-42b5-b269-e52285ccf84b" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/106609e3-dfb0-4d4f-a047-da96e47d6136" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/237c244a-8b8d-4408-b96d-78c056ee50da" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/57d0133b-9047-4331-9d3a-c6266d793598" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/4604c04f-6097-4d8d-9f71-c95fa8182472" />
