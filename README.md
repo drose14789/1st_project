@@ -1,63 +1,88 @@
-# 프로젝트명
-> 1st Team Project
-- 프로젝트명 :
-- 인원 : 4명
-- 기간 : 2025.12.19 ~ 2026.01.05
+# 🎯 1st PROJECTS
 
-[![PPTX](https://img.shields.io/badge/Presentation-PPTX-blue)](https://github.com/user-attachments/files/24443148/1st_project.3.pptx)
+> KDT AI-X 1차 프로젝트
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/f631e551-dfc6-413d-a826-ac03c653262b" />
+## 📌 프로젝트 개요
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/a6daf664-953a-4c71-842c-30b5c1b23513" />
+- **프로젝트명**: [프로젝트 이름]
+- **개발 기간**: 2024.12.24 ~ 2025.01.05 (2주)
+- **개발 인원**: x명
+- **주요 기술**:  
+	<div>
+	  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+	  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white">
+	  <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white">
+	  <img src="https://img.shields.io/badge/Matplotlib-11557c?style=for-the-badge&logo=python&logoColor=white">
+	  <img src="https://img.shields.io/badge/Seaborn-3776AB?style=for-the-badge&logo=python&logoColor=white">
+	</div>
+	<div>
+	  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white">
+	  <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white">
+	  <img src="https://img.shields.io/badge/LightGBM-02569B?style=for-the-badge&logoColor=white">
+	  <img src="https://img.shields.io/badge/CatBoost-FFCC00?style=for-the-badge&logoColor=black">
+	  <img src="https://img.shields.io/badge/XGBoost-EB5424?style=for-the-badge&logoColor=white">
+	</div>
+	<div>
+	  <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white">
+	  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
+	  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+	  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+	  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+	</div>
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/6ba6f61c-88f8-4c32-b0ec-b72fb63dd522" />
+## 📑 목차
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/532c010b-59c8-4168-a19c-e4fa1b1bded9" />
+[1. 프로젝트 소개](https://github.com/yisy0/test?tab=readme-ov-file#Project-Overview)<br>
+[2. 데이터 수집 및 분석](https://github.com/yisy0/test?tab=readme-ov-file#Data-Preprocessing)<br>
+[3. 모델 개발](https://github.com/yisy0/test?tab=readme-ov-file#Modeling)<br>
+[4. 웹 서비스](https://github.com/yisy0/test?tab=readme-ov-file#web-service-implementation)<br>
+[5. 프로젝트 결과](https://github.com/yisy0/test?tab=readme-ov-file#project-results)<br>
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/6f6a2594-bb87-4a3f-adf1-531f30e415bb" />
+## Project Overview
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/290ce786-24d8-41dd-8fa5-1c66a9a38d37" />
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/8140fc9f-93a3-4b10-aa48-22bb3327f8ae" />
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/7012a233-3982-4e5e-a637-8508aad7c922" />
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/dfba7efc-8b43-4630-8804-a85254d7f9c2" />
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/dcc275cf-7490-4ae2-9fd5-9e201a28ab06" />
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/69405923-c12b-4cfd-ab6f-cd00c623c6cf" />
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/1b2bd558-6336-4dcc-ae3a-36613c3e0610" />
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/329648c3-57d5-47f8-8ef1-0d7170ea91b1" />
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/59378206-2236-42e5-857d-20ec7c695bb4" />
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/fed574ac-e12d-4fee-b232-dfd8f3f4ef77" />
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ace897de-b453-40fd-912f-b97b934e840e" />
+## Data Preprocessing
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/32fdaf1d-6d98-4da5-948c-c6d7d375e1d5" />
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/b15fa543-c4d5-473e-be0b-7cae3c37e5d2" />
+## Modeling
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/ba5dcf50-cdbe-4c13-bd7d-0e4d20663ac8" />
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ce0a7da5-b41a-49bd-b3ff-f7ddc540a0a6" />
+## 📊 Model Performance Comparison(ppt에 없으면 명시. ppt에 넣을 것 강추)
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/810fb072-9ef0-4ce6-86c0-da8b6a490606" />
+| Model | Train Acc | Val Acc | F1-Score | AUC-ROC | Training Time | Note |
+|:------|:---------:|:-------:|:--------:|:-------:|:-------------:|:-----|
+| 🧠 Deep Learning | 0.92 | 0.85 | 0.83 | 0.88 | 45 min | 과적합 경향 |
+| 🌲 Random Forest | 0.89 | 0.87 | 0.85 | 0.90 | 12 min | 안정적 |
+| ⚡ XGBoost | 0.91 | 0.89 | 0.87 | 0.92 | 8 min | 높은 성능 |
+| 💡 **LightGBM** 🏆 | **0.92** | **0.91** | **0.89** | **0.94** | **6 min** | **최종 선택** |
+| 🐱 CatBoost | 0.91 | 0.90 | 0.88 | 0.93 | 10 min | LightGBM과 유사 |
+> 🏆 **최종 선택**: LightGBM이 검증 정확도와 학습 시간에서 가장 우수한 성능을 보였습니다.
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/e7173518-8a10-462b-b427-c27066bca791" />
+##  Web Service Implementation
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/d86c53a5-bc6a-4809-b092-64d0747d2bcf" />
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/c4b57c45-7b4e-4cc0-888c-fce271809bb3" />
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/9d27a3cf-c4cc-4eb1-9d53-8868d6842f9f" />
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/6f92a26f-33dd-4758-9e76-3a6c80460428" />
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/14ef297b-bf08-4c49-b2f1-96ac13fab66f" />
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/b6373284-c615-4cc6-898c-f3889a4a9d50" />
+## Project Results
+<img width="675" height="380" alt="Image" src="https://github.com/user-attachments/assets/b6848a03-d803-4062-bdb3-a1718804a195" />
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/9e19fcdb-0f44-44e7-acdb-f3d1ad0c2c9a" />
+## 🎬 Demo Video
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/3e84b302-169a-455b-b6fe-7d3877e6f13e" />
+<div>
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/f38f0ffe-f228-4f9f-98e0-10af1718056e" />
+[![Video Title](https://img.youtube.com/vi/Plf0P_m5qbg/3.jpg)](https://youtu.be/Plf0P_m5qbg?si=Fx3lEvU6rlhwUxEc)
+*클릭하면 데모 영상을 볼 수 있습니다*
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/3ed56902-db49-40cc-8114-f7d771f2394f" />
-
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/2a67e147-87de-435c-914e-3ead3e9385ee" />
-
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/2f03531e-6729-4701-ba7a-01764822248e" />
-
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/e4ca902e-2050-42b5-b269-e52285ccf84b" />
-
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/106609e3-dfb0-4d4f-a047-da96e47d6136" />
-
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/237c244a-8b8d-4408-b96d-78c056ee50da" />
-
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/57d0133b-9047-4331-9d3a-c6266d793598" />
-
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/4604c04f-6097-4d8d-9f71-c95fa8182472" />
+[![Demo](https://img.shields.io/badge/Demo-success?style=flat-square)](https://youtu.be/Plf0P_m5qbg?si=j7dAn5hjBBsjYa9J)
+![Commits](https://img.shields.io/github/commit-activity/m/yisy0/test)
