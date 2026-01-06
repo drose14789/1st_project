@@ -109,8 +109,8 @@
 
 <div>
 
-[![Video Title](https://img.youtube.com/vi/Plf0P_m5qbg/0.jpg)](https://youtu.be/Plf0P_m5qbg?si=Fx3lEvU6rlhwUxEc)
+[![Video Title](https://youtu.be/GZhJtxeNO4U/0.jpg)](https://youtu.be/GZhJtxeNO4U)
 *클릭하면 데모 영상을 볼 수 있습니다*
 
-[![Demo](https://img.shields.io/badge/Demo-success?style=flat-square)](https://youtu.be/Plf0P_m5qbg?si=j7dAn5hjBBsjYa9J)
+[![Demo](https://img.shields.io/badge/Demo-success?style=flat-square)](https://youtu.be/GZhJtxeNO4U)
 ![Commits](https://img.shields.io/github/commit-activity/m/yisy0/test)
