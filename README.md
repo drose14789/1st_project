@@ -33,17 +33,11 @@
 
 
 ## 📑 목차
-[01. 프로젝트 개요](https://github.com/user-attachments/assets/6ba6f61c-88f8-4c32-b0ec-b72fb63dd522)<br>
-[02. 프로젝트 목표](url)<br>
-[03. 전체 시스템 구성](url)<br>
-[04. 업무 분장 및 일정 관리](url)<br>
-[05. 개발 환경](url)<br>
-[06. 데이터 개요 및 전처리](url)<br>
-[07. 데이터 분석 및 특징 추출](url)<br>
-[08. 딥러닝 모델 구현](url)<br>
-[09. 머신러닝 모델 구현](url)<br>
-[10. 웹 서비스 구현 및 UI 시연](url)<br>
-[11. 최종 결과 및 결론](url)<br>
+[01. 프로젝트 개요](https://github.com/drose14789/1st_project?tab=readme-ov-file#project-overview)<br>
+[02. 데이터 개요 및 전처리](https://github.com/drose14789/1st_project?tab=readme-ov-file#data-processing)<br>
+[03. 모델 구현](https://github.com/drose14789/1st_project?tab=readme-ov-file#model-implementation)<br>
+[04. 웹 서비스 구현 및 UI 시연](https://github.com/drose14789/1st_project?tab=readme-ov-file#web-page-implementation)<br>
+[05. 최종 결과 및 결론](https://github.com/drose14789/1st_project?tab=readme-ov-file#project-result)<br>
 
 ## Project Overview
 
